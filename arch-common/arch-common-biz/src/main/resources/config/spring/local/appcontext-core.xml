@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:lion="http://code.dianping.com/schema/lion"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+	   http://code.dianping.com/schema/lion http://code.dianping.com/schema/lion/lion-1.0.xsd">
+
+    <context:component-scan base-package="com.arch.common"/>
+    <lion:config/>
+    <bean name="beanMappingService" class="com.arch.common.biz.framework.BeanMappingServiceImpl"></bean>
+
+    <bean id="beanMapper" class="org.dozer.spring.DozerBeanMapperFactoryBean">
+        <property name="mappingFiles">
+            <list>
+                <value>classpath*:config/beanMapping/*.xml</value>
+            </list>
+        </property>
+    </bean>
+    <bean name="beans" class="com.arch.common.biz.framework.Beans"></bean>
+</beans>

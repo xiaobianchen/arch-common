@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+       <beans xmlns="http://www.springframework.org/schema/beans"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+              xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+       <bean id="weixinSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" lazy-init="false">
+              <!--指定数据源-->
+              <property name="dataSource" ref="weixinDataSource"/>
+              <!--指定Mapper文件地址，需要改写-->
+              <property name="mapperLocations" value="classpath*:config/sqlmap/**/*.xml" />
+              <!--指定entity的package,需要改写-->
+              <property name="typeAliasesPackage" value="com.arch.common.biz.entity" />
+       </bean>
+
+       <tx:annotation-driven transaction-manager="weixinTransactionManager"/>
+
+       <bean class="com.dianping.zebra.dao.mybatis.ZebraMapperScannerConfigurer">
+              <property name="basePackage" value="com.arch.common.biz.dao" />
+       </bean>
+
+</beans>

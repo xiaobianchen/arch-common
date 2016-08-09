@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.arch.common.biz.dao.WeixinConfigDao">
+    <sql id="select_all">
+    	SELECT
+		id
+		,componentAppid
+		,componentAppsecret
+		,token
+		,encodeingAesKey
+		,authorizationUrl
+		,redirectUrl
+		,messgesUrl
+		,createTime
+		,updateTime
+		,isDeleted
+		FROM t_weixin_config
+    </sql>
+    <insert id="create" parameterType="WeixinConfig" useGeneratedKeys="true" keyProperty="id">
+    	INSERT INTO t_weixin_config(
+    componentAppid,    componentAppsecret,    token,    encodeingAesKey,    authorizationUrl,    redirectUrl, messgesUrl,    createTime,    updateTime,    isDeleted  )
+		VALUES(
+#{componentAppid},#{componentAppsecret},#{token},#{encodeingAesKey},#{authorizationUrl},#{redirectUrl},#{messgesUrl},#{createTime},#{updateTime},#{isDeleted})
+    </insert>
+
+    <select id="findById" parameterType="map" resultType="WeixinConfig">
+        <include refid="select_all"></include>
+        WHERE id = #{id} and isDeleted = 0
+    </select>
+
+    <delete id="delete" parameterType="map">
+		update `t_weixin_config` set isDeleted = 1 WHERE id =#{id}
+	</delete>
+
+    <update id="update" parameterType="WeixinConfig">
+        UPDATE  t_weixin_config
+        SET
+		  componentAppid = #{componentAppid},   componentAppsecret = #{componentAppsecret},   token = #{token},   encodeingAesKey = #{encodeingAesKey},   authorizationUrl = #{authorizationUrl},   redirectUrl = #{redirectUrl}, messgesUrl = #{messgesUrl},    updateTime = #{updateTime},   isDeleted = #{isDeleted}
+        WHERE id = #{id}
+    </update>
+</mapper>
