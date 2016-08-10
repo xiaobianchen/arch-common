@@ -25,7 +25,7 @@
 
     <context-param>
         <param-name>webAppRootKey</param-name>
-        <param-value>haoduoke-weixin-service.root</param-value>
+        <param-value>arch-common-service.root</param-value>
     </context-param>
 
 
