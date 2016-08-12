@@ -13,7 +13,7 @@
         <property name="services">
             <map>
                 <entry
-                        key="http://service.arch.com/arch/common/HelloService_0.0.1"
+                        key="http://service.bingkun.com/arch/common/HelloService_0.0.1"
                         value-ref="helloWorldServiceImpl"/>
 
             </map>
