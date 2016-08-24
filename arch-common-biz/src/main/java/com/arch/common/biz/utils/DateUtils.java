@@ -173,6 +173,20 @@ public class DateUtils {
 
     }
 
+    /**
+     * 获取前N天日期
+     * @param date
+     * @param nDay
+     * @return
+     */
+    public static Date getFrontDay(Date date,Integer nDay){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DATE, -nDay);
+        return calendar.getTime();
+
+    }
+
     /** |
      * 获取前一分钟,并且设置秒为59
      * @param date
@@ -184,6 +198,20 @@ public class DateUtils {
         calendar.add(Calendar.MINUTE, -1);
         calendar.set(Calendar.SECOND, 59);
         return calendar.getTime();
+    }
+
+    public static void main(String[] args) {
+        Date today = new DateTime().toDate();
+        System.out.println(formatDayStart(today));
+        System.out.println(formatDayEnd(today));
+        System.out.println(formatZeroSecond(today));
+        System.out.println(getDateFormat("2016-08-24 23:23:50"));
+        System.out.println(getDateFormat_minute("2016-08-24 23:23:50"));
+        System.out.println(getDateFormatyyyyMMdd("2016-08-24 23:23:50"));
+        System.out.println(formatNextDayStart(today));
+        System.out.println(getFrontDate(today,3));
+        System.out.println(getFrontDay(today,7));
+        System.out.println(formatMinuteBackEnd(today));
     }
 
 }
